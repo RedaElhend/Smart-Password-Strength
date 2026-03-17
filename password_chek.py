@@ -1,6 +1,9 @@
+# this just a code you will need to instal rockyou.txt to run it with this
+
 import string
 import time
 
+# make chore the code have more or 8 caractair
 while True:
     code=input("chose a password :")
     if len(code)>=8:
@@ -47,13 +50,6 @@ if etat==False:
         print("exelent")
 else:
     print("it is a coment pasword use another one")
-    
-
-
-
-   
-
-
 # if note give hime a segtion with ia
 # give hime the shose to aprov it or refusit 
 # if he refeuset give hime a nother shose 
