@@ -2,6 +2,21 @@
 
 import string
 import time
+from groq import Groq
+
+client = Groq(api_key="api key of grop ;]")
+
+def get_ai_suggestion(password):
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[
+            {
+                "role": "user",
+                "content": f"My password is: {password}. Give me 1 stronger password that looks similar to it. Only give the password, nothing else."
+            }
+        ]
+    )
+    return response.choices[0].message.content
 
 # make chore the code have more or 8 caractair
 while True:
@@ -41,16 +56,20 @@ if etat==False:
         if i in string.punctuation and sumbole==False:
             sumbole=True
             strength=strength+1
-
-    if strength == 1:
-        print("bad")
-    elif strength==2:
-        print("normal")
-    elif strength==3:
-        print("exelent")
+    if strength==3:
+        print("it is a good pass word")
+    else:
+        chose = input("it is not a very secur pasword would you like a segetion for a better one? y/n :")
 else:
-    print("it is a coment pasword use another one")
-# if note give hime a segtion with ia
-# give hime the shose to aprov it or refusit 
-# if he refeuset give hime a nother shose 
-# if he aprovit give hime the shose to exite 
+    print("it is a coment pasword \n Suggested stronger password:", get_ai_suggestion(code))
+
+while True:
+    if chose == "y" or chose=="Y":
+        print("Suggested stronger password:", get_ai_suggestion(code))
+        break
+    elif chose == "n" or chose=="N":
+        print("havee a nice day")
+        break
+    else:
+        print("you chose a invalide choise ")
+        chose=input("would you like a segetion for a better one? y/n :")
